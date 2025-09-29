@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
-import UserModel from "../modules/user/models/user.model";
+import UserModel from "../shared/models/user.model";
 
 const uri = process.env.MONGO_URI!;
 if (!uri) {
@@ -21,6 +21,7 @@ const connecDB = async () => {
       const hassedPassword = await bcrypt.hash(password, salt);
 
       user = new UserModel({
+        name: "Admin",
         email,
         password: hassedPassword,
         role: "admin",

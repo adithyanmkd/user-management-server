@@ -25,6 +25,7 @@ export const authenticateJWT = (
   next: NextFunction
 ) => {
   const authHeader = req.headers.authorization;
+  console.log("header log: ", req.header);
 
   if (authHeader) {
     const token = authHeader.split(" ")[1];
@@ -44,6 +45,7 @@ export const authenticateJWT = (
       next();
     });
   } else {
+    console.error("Auth header not found");
     res.sendStatus(403);
   }
 };

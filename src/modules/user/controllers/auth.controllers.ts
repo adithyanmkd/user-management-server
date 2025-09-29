@@ -15,7 +15,6 @@ const login = async (req: Request, res: Response) => {
       data: user,
     });
   } catch (error) {
-    console.error(error);
     if (error instanceof Error) {
       return res.status(500).json({
         success: false,

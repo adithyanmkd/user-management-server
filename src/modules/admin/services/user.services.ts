@@ -1,8 +1,8 @@
 // import models
-import UserModel from "../models/user.model";
+import UserModel from "../../../shared/models/user.model";
 
 // import types
-import { User } from "../../../common/types/user.types";
+import { User } from "../../../shared/types/user.types";
 
 const userServices = {
   // fetch all users

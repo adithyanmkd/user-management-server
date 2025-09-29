@@ -1,5 +1,5 @@
-import generateToken, { Payload } from "../../../common/utils/jwt.utils";
-import UserModel from "../models/user.model";
+import generateToken, { Payload } from "../../../shared/utils/jwt.utils";
+import UserModel from "../../../shared/models/user.model";
 import bcrypt from "bcryptjs";
 
 type LoginType = {
