@@ -11,9 +11,14 @@ type ChangeNameType = {
 };
 
 type ChangePasswordType = {
-  userId: String;
+  userId: string;
   currentPass: string;
   newPass: string;
+};
+
+type UploadProfileType = {
+  userId: string;
+  imageUrl: string;
 };
 
 const profileServices = {
@@ -54,6 +59,23 @@ const profileServices = {
     await user.save();
 
     try {
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  // upload profile
+  uploadProfile: async ({ userId, imageUrl }: UploadProfileType) => {
+    try {
+      const updatedUser = await UserModel.findByIdAndUpdate(
+        userId,
+        {
+          avatar: imageUrl,
+        },
+        { new: true }
+      );
+
+      return updatedUser;
     } catch (error) {
       throw error;
     }

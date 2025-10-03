@@ -25,7 +25,7 @@ export const authenticateJWT = (
   next: NextFunction
 ) => {
   const authHeader = req.headers.authorization;
-  console.log("header log: ", req.header);
+  // console.log("header log: ", req.header);
 
   if (authHeader) {
     const token = authHeader.split(" ")[1];

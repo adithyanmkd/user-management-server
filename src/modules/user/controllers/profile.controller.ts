@@ -48,7 +48,7 @@ const changeName = async (req: AuthenticatedRequest, res: Response) => {
 // change password
 const changePassword = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    console.log("req.body log: ", req.body);
+    // console.log("req.body log: ", req.body);
     const user = req.user;
     const { currentPassword, newPassword } = req.body;
 
@@ -88,9 +88,58 @@ const changePassword = async (req: AuthenticatedRequest, res: Response) => {
   }
 };
 
+// upload profile image
+const uploadProfile = async (req: AuthenticatedRequest, res: Response) => {
+  try {
+    const user = req.user;
+    const { imageUrl } = req.body;
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized: User not found",
+      });
+    }
+
+    const userId = user.userId;
+    // console.log("body log: ", req.body);
+
+    const updatedUser = await profileServices.uploadProfile({
+      userId,
+      imageUrl,
+    });
+
+    const data = {
+      name: updatedUser?.name,
+      avatar: updatedUser?.avatar,
+      email: updatedUser?.email,
+      role: updatedUser?.role,
+    };
+
+    return res.status(200).json({
+      success: true,
+      message: "Profile image updated",
+      data,
+    });
+  } catch (error) {
+    console.error(error);
+    if (error instanceof Error) {
+      return res.status(500).json({
+        success: false,
+        message: error.message,
+      });
+    }
+
+    return res.status(500).json({
+      success: false,
+      message: "Something went wrong!",
+    });
+  }
+};
+
 const profileController = {
   changeName,
   changePassword,
+  uploadProfile,
 };
 
 export default profileController;
