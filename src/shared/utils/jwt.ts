@@ -6,10 +6,8 @@ export interface Payload {
   role: "user" | "admin";
 }
 
-const generateToken = (payload: Payload) => {
+export const generateToken = (payload: Payload) => {
   return jwt.sign(payload, process.env.JWT_SECRET!, {
     expiresIn: "1d",
   });
 };
-
-export default generateToken;

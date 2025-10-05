@@ -1,4 +1,4 @@
-import generateToken, { Payload } from "../../../shared/utils/jwt.utils";
+import { generateToken, Payload } from "../../../shared/utils/jwt";
 import UserModel from "../../../shared/models/user.model";
 import bcrypt from "bcryptjs";
 
@@ -41,7 +41,7 @@ const authServices = {
     }
   },
 
-  // login service
+  // user login service
   login: async (data: LoginType) => {
     try {
       const user = await UserModel.findOne({ email: data.email });
@@ -49,7 +49,7 @@ const authServices = {
 
       const { password } = data; // user entered password
       const isMatch = await bcrypt.compare(password, user.password);
-      if (!isMatch) throw new Error("Invalid password");
+      if (!isMatch) throw new Error("Invalid username or password.");
 
       const payload: Payload = {
         userId: user._id,

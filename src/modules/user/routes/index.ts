@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 // import routes
-import userRoutes from "../../admin/routes/user.routes";
+import userRoutes from "../../admin/routes/auth.routes";
 import authRoutes from "./auth.routes";
 import profileRoutes from "./profile.routes";
 

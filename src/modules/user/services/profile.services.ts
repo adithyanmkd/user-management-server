@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 
 // import models
 import UserModel from "../../../shared/models/user.model";
-import { verifyPassword } from "../../../shared/utils/password.utils";
+import { verifyPassword } from "../../../shared/utils/password";
 
 type ChangeNameType = {
   userId: string;

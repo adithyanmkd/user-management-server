@@ -7,12 +7,12 @@ import { AuthenticatedRequest } from "../../../middleware/auth";
 const login = async (req: Request, res: Response) => {
   try {
     const credentials = req.body;
-    const user = await authServices.login(credentials);
+    const { user, token } = await authServices.login(credentials);
 
     return res.status(200).json({
       success: true,
       message: "User logged successfully.",
-      data: user,
+      data: { user, token },
     });
   } catch (error) {
     if (error instanceof Error) {
