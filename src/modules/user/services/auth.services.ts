@@ -17,7 +17,7 @@ const authServices = {
     try {
       let user = await UserModel.findOne({ email: data.email });
       if (user) {
-        throw new Error("User already exists please login.");
+        throw new Error("User already exists.");
       }
 
       const salt = await bcrypt.genSalt(10);
